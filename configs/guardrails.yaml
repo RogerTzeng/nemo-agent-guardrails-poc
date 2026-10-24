@@ -1,0 +1,39 @@
+# 管理設定：Agent 選 profile；profile 列出依序執行的 checks。
+agents:
+  yield_agent: yield_profile
+  equipment_agent: equipment_profile
+  protected_agent: protected_profile
+  default_agent: default_profile
+
+profiles:
+  yield_profile:
+    input: [semiconductor_safety]
+    output: [semiconductor_safety]
+  equipment_profile:
+    input: [equipment_safety]
+    output: [equipment_safety]
+  protected_profile:
+    input: [no_email, semiconductor_safety]
+    output: [no_email, semiconductor_safety]
+  default_profile:
+    input: [model_default]
+    output: [model_default]
+
+checks:
+  semiconductor_safety:
+    type: content_safety
+    mode: custom
+    prompt: |-
+      禁止洩漏機密配方；允許一般設備說明。
+  equipment_safety:
+    type: content_safety
+    mode: custom
+    prompt: |-
+      禁止繞過安全互鎖；允許一般製程概念。
+  model_default:
+    type: content_safety
+    mode: default
+  no_email:
+    type: regex
+    deny_patterns:
+      - '\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b'

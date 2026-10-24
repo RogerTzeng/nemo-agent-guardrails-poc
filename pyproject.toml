@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "nemo-agent-guardrails-poc"
+version = "0.1.0"
+requires-python = ">=3.12,<3.13"
+dependencies = ["nemoguardrails[server]==0.24.1", "httpx==0.28.1", "pydantic==2.14.1", "PyYAML==6.0.3", "fastapi==0.161.1", "uvicorn==0.54.0", "langchain-openai==1.7.0"]
+
+[project.optional-dependencies]
+test = ["pytest==9.1.1"]
+native = ["yara-python==4.5.4"]
+agent = ["deepagents==0.4.12", "langchain==1.4.4", "langchain-core==1.6.9", "python-dotenv==1.2.4"]
+
+[tool.setuptools]
+py-modules = ["http_guardrail_demo", "http_guardrails"]
+
+[tool.setuptools.packages.find]
+include = ["guardrail_extension*"]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]

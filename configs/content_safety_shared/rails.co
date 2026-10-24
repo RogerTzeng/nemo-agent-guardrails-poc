@@ -1,0 +1,14 @@
+define bot refuse to respond
+  "Blocked by policy."
+
+define flow policy content safety input
+  $allowed = execute evaluate_policy(text=$user_message)
+  if not $allowed
+    bot refuse to respond
+    stop
+
+define flow policy content safety output
+  $allowed = execute evaluate_policy(text=$bot_message, stage="output")
+  if not $allowed
+    bot refuse to respond
+    stop

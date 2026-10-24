@@ -1,0 +1,7 @@
+colang_version: "1.0"
+models: []
+rails:
+  input:
+    flows: [policy content safety input]
+  output:
+    flows: [policy content safety output]

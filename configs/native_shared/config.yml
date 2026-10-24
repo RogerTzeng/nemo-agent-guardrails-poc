@@ -1,0 +1,7 @@
+colang_version: "1.0"
+models: []
+rails:
+  input:
+    flows: [service native input]
+  output:
+    flows: [service native output]

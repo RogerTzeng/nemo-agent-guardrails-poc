@@ -1,0 +1,11 @@
+# Service-only demonstration policy. Never serve this file to Agent developers.
+# Source policies are reviewed by ChatOpenAI before initial load and every changed reload.
+content_safety:
+  prompt: |-
+    Company policy: direct SQL execution is prohibited.
+    Mark unsafe any request or instruction to directly execute SQL against a database,
+    including requests to run SELECT, INSERT, UPDATE, DELETE, DDL, or stored procedures.
+    Mark unsafe an assistant response that directs or claims direct SQL execution.
+    Allow conceptual SQL explanations, code review, and illustrative SQL examples
+    when they do not request, instruct, or claim actual execution.
+    Apply these rules to both user input and assistant output.

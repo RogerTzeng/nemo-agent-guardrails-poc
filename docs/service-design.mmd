@@ -1,0 +1,39 @@
+flowchart TB
+    Agent["DeepAgents middleware<br/>before_agent: incoming messages<br/>model wrapper: every model response"]
+    Public["Agent-managed guardrails.yaml<br/>agents → profiles → checks"]
+    Private["Service-private configuration<br/>company policy · default taxonomy · native presets"]
+    Admin["Administrator"]
+    ReviewLLM["ChatOpenAI<br/>policy conflict review"]
+    SafetyNIM["NVIDIA NIM<br/>Content Safety"]
+    Providers["Configured models / providers"]
+
+    subgraph Server["Official nemoguardrails server — one service"]
+        Check["POST /v1/check<br/>validate request · capture snapshot"]
+        Snapshot["Immutable registry snapshot<br/>Agent → profile → stage checks"]
+        Dispatch["Dispatcher<br/>execute configured checks in order"]
+        Checks["Loopback POST /v1/checks"]
+        Runtime["NeMo cached Rails runtimes<br/>content_safety_shared · regex_shared · native_shared"]
+        Safety["Content Safety action<br/>one merged policy evaluation per stage"]
+        Regex["Regex action"]
+        Native["Native rail adapter<br/>strict provider response validation"]
+        Result["All checks ALLOW → ALLOW<br/>block / failure / invalid response → DENY"]
+        Reload["POST /v1/admin/reload<br/>admin key · serialized reload"]
+        Compile["Validate candidate<br/>merge company + Agent custom policies<br/>include taxonomy when default selected"]
+        Review["Review changed policy contexts<br/>conflict: 409 · unavailable: 503"]
+        State["Persist private approval state<br/>then atomically publish snapshot"]
+    end
+
+    Agent --> Check --> Dispatch --> Checks --> Runtime
+    Snapshot -. "read only" .-> Check
+    Runtime --> Safety --> SafetyNIM
+    Runtime --> Regex
+    Runtime --> Native --> Providers
+    Safety --> Result
+    Regex --> Result
+    Native --> Result
+    Result --> Agent
+    Admin --> Reload --> Compile --> Review
+    Public --> Compile
+    Private --> Compile
+    Review <--> ReviewLLM
+    Review -->|compatible| State --> Snapshot

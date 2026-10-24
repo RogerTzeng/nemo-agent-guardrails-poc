@@ -1,0 +1,299 @@
+# Service-only deployments. Disabled entries are scaffolds, NOT verified providers.
+rails:
+  activefence:
+    default:
+      enabled: false
+      surfaces:
+        input: activefence moderation on input
+        output: activefence moderation on output
+      parameters: {}
+      config: {}
+  ai_defense:
+    default:
+      enabled: false
+      surfaces:
+        input: ai defense inspect prompt
+        output: ai defense inspect response
+      parameters: {}
+      config:
+        rails:
+          config:
+            ai_defense: {}
+  autoalign:
+    default:
+      enabled: false
+      surfaces:
+        input: autoalign check input
+        output: autoalign check output
+      parameters: {}
+      config:
+        rails:
+          config:
+            autoalign: {}
+  clavata:
+    default:
+      enabled: false
+      surfaces:
+        input: clavata check input
+        output: clavata check output
+      parameters: {}
+      config:
+        rails:
+          config:
+            clavata: {}
+  cleanlab:
+    default:
+      enabled: false
+      surfaces:
+        output: cleanlab trustworthiness
+      parameters: {}
+      config: {}
+  context_bloat_detection:
+    default:
+      enabled: true
+      surfaces:
+        input: context bloat detection on input
+      parameters: {}
+      config:
+        rails:
+          config:
+            context_bloat_detection:
+              max_chars: 5000
+              action: reject
+  crowdstrike_aidr:
+    default:
+      enabled: false
+      surfaces:
+        input: crowdstrike aidr guard input
+        output: crowdstrike aidr guard output
+      parameters: {}
+      config:
+        rails:
+          config:
+            crowdstrike_aidr: {}
+  f5:
+    default:
+      enabled: false
+      surfaces:
+        input: f5 guardrails scan input
+        output: f5 guardrails scan output
+      parameters: {}
+      config:
+        rails:
+          config:
+            f5: {}
+  factchecking.align_score:
+    default:
+      enabled: false
+      surfaces:
+        output: alignscore check facts
+      parameters: {}
+      config: {}
+  factchecking:
+    default:
+      enabled: false
+      surfaces: {}
+      parameters: {}
+      config:
+        rails:
+          config:
+            fact_checking: {}
+  fiddler:
+    default:
+      enabled: false
+      surfaces:
+        input: fiddler user safety
+        output: fiddler bot safety
+      parameters: {}
+      config:
+        rails:
+          config:
+            fiddler: {}
+  gcp_moderate_text:
+    default:
+      enabled: false
+      surfaces:
+        input: gcpnlp moderation
+      parameters: {}
+      config: {}
+  gliner:
+    default:
+      enabled: false
+      surfaces:
+        input: gliner detect pii on input
+        output: gliner detect pii on output
+      parameters: {}
+      config:
+        rails:
+          config:
+            gliner: {}
+  guardrails_ai:
+    default:
+      enabled: false
+      surfaces:
+        input: guardrailsai check input
+        output: guardrailsai check output
+      parameters: {}
+      config:
+        rails:
+          config:
+            guardrails_ai: {}
+  hallucination:
+    default:
+      enabled: false
+      surfaces:
+        output: self check hallucination
+      parameters: {}
+      config: {}
+  hf_classifier:
+    default:
+      enabled: false
+      surfaces:
+        input: hf classifier check input
+        output: hf classifier check output
+      parameters: {}
+      config:
+        rails:
+          config:
+            hf_classifier: {}
+  injection_detection:
+    default:
+      enabled: true
+      surfaces:
+        output: injection detection
+      parameters: {}
+      config:
+        rails:
+          config:
+            injection_detection:
+              injections:
+              - sqli
+              - xss
+              action: reject
+  jailbreak_detection:
+    default:
+      enabled: false
+      surfaces:
+        input: jailbreak detection heuristics
+      parameters: {}
+      config:
+        rails:
+          config:
+            jailbreak_detection: {}
+  llama_guard:
+    default:
+      enabled: false
+      surfaces:
+        input: llama guard check input
+        output: llama guard check output
+      parameters: {}
+      config: {}
+  pangea:
+    default:
+      enabled: false
+      surfaces:
+        input: pangea ai guard input
+        output: pangea ai guard output
+      parameters: {}
+      config:
+        rails:
+          config:
+            pangea: {}
+  patronusai:
+    default:
+      enabled: false
+      surfaces:
+        output: patronus lynx check output hallucination
+      parameters: {}
+      config:
+        rails:
+          config:
+            patronus: {}
+  policyai:
+    default:
+      enabled: false
+      surfaces:
+        input: policyai moderation on input
+        output: policyai moderation on output
+      parameters: {}
+      config: {}
+  polygraf:
+    default:
+      enabled: false
+      surfaces:
+        input: polygraf detect pii on input
+        output: polygraf detect pii on output
+      parameters: {}
+      config:
+        rails:
+          config:
+            polygraf: {}
+  privateai:
+    default:
+      enabled: false
+      surfaces:
+        input: detect pii on input
+        output: detect pii on output
+      parameters: {}
+      config:
+        rails:
+          config:
+            privateai: {}
+  prompt_security:
+    default:
+      enabled: false
+      surfaces:
+        input: protect prompt
+        output: protect response
+      parameters: {}
+      config: {}
+  self_check.facts:
+    default:
+      enabled: false
+      surfaces:
+        output: self check facts
+      parameters: {}
+      config: {}
+  self_check.input_check:
+    default:
+      enabled: false
+      surfaces:
+        input: self check input
+      parameters: {}
+      config: {}
+  self_check.output_check:
+    default:
+      enabled: false
+      surfaces:
+        output: self check output
+      parameters: {}
+      config: {}
+  sensitive_data_detection:
+    default:
+      enabled: false
+      surfaces:
+        input: detect sensitive data on input
+        output: detect sensitive data on output
+      parameters: {}
+      config:
+        rails:
+          config:
+            sensitive_data_detection: {}
+  topic_safety:
+    default:
+      enabled: false
+      surfaces:
+        input: topic safety check input
+      parameters: {}
+      config: {}
+  trend_micro:
+    default:
+      enabled: false
+      surfaces:
+        input: trend ai guard input
+        output: trend ai guard output
+      parameters: {}
+      config:
+        rails:
+          config:
+            trend_micro: {}

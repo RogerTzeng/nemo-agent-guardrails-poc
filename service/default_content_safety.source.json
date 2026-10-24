@@ -1,0 +1,10 @@
+{
+  "model": "nvidia/Nemotron-3.5-Content-Safety",
+  "revision": "35645ed3543b7e7ffaed2e788699e57a5051497c",
+  "source": "https://huggingface.co/nvidia/Nemotron-3.5-Content-Safety/blob/35645ed3543b7e7ffaed2e788699e57a5051497c/chat_template.jinja",
+  "source_sha256": "46d3427fdfc7729f568e346ac80f8c4dd5e6feb4cdcfec65c25a893dc8f33a64",
+  "extracted_sha256": "78556a399a60151d170bc0d12b863c097cb261272923115ebcdcbe3a19c94ecc",
+  "extraction": "Rendered standard mode, extracted classifier instructions and S1-S24 taxonomy before BEGIN CONVERSATION. Conversation delimiters and output suffix are supplied by NIM custom-policy template.",
+  "license": "OpenMDW-1.1; Gemma terms per official model card",
+  "hosted_template_parity_verified": false
+}

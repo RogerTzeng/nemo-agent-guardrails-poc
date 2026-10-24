@@ -1,0 +1,14 @@
+define bot refuse to respond
+  "Blocked by policy."
+
+define flow policy regex input
+  $allowed = execute evaluate_regex(text=$user_message)
+  if not $allowed
+    bot refuse to respond
+    stop
+
+define flow policy regex output
+  $allowed = execute evaluate_regex(text=$bot_message)
+  if not $allowed
+    bot refuse to respond
+    stop
